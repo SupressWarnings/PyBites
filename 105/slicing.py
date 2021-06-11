@@ -24,7 +24,7 @@ def slice_and_dice(text: str = text) -> list:
     split = removed_trailing.split("\n")
     for line in split:
         line_rmvd_whitespace = line.strip()
-        if line_rmvd_whitespace.islower():
+        if line_rmvd_whitespace[0].islower():
             last_word = line_rmvd_whitespace.split()[-1]
             result = last_word.strip(".!")
             results.append(result)
