@@ -43,8 +43,9 @@ def strip_vowels(text: str) -> Tuple[str, int]:
     text_list = list(text)
     counter = 0
     for possible_vowel in text_list:
-        if possible_vowel in vowels:
+        if possible_vowel.lower() in vowels:
             counter += 1
     for vowel in vowels:
         text = text.replace(vowel, "*")
+        text = text.replace(vowel.upper(), "*")
     return (text, counter)
