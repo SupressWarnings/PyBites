@@ -17,4 +17,5 @@ def print_game_stats(games_won):
        (Note that as of Python 3.7 - which we're using atm - dict insert order
        is retained so no sorting is required for this Bite.)
     """
-    pass
+    for name, amount in games_won.items():
+        print(f"{name} has won {amount} game{'s' if amount != 1 else ''}")
