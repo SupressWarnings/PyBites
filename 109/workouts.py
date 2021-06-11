@@ -31,11 +31,12 @@ def get_workout_motd(day):
        Trivia: /etc/motd is a file on Unix-like systems that contains
        a 'message of the day'
     """
-    if day in WORKOUT_SCHEDULE.keys():
-        if WORKOUT_SCHEDULE[day] == "Rest":
+    formatted_day = day.title()
+    if formatted_day in WORKOUT_SCHEDULE.keys():
+        if WORKOUT_SCHEDULE[formatted_day] == "Rest":
             return CHILL_OUT
         else:
-            return TRAIN.format(WORKOUT_SCHEDULE[day])
+            return TRAIN.format(WORKOUT_SCHEDULE[formatted_day])
     else:
         return INVALID_DAY
 
