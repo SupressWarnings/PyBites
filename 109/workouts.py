@@ -1,12 +1,14 @@
-WORKOUT_SCHEDULE = {'Friday': 'Shoulders',
-                    'Monday': 'Chest+biceps',
-                    'Saturday': 'Rest',
-                    'Sunday': 'Rest',
-                    'Thursday': 'Legs',
-                    'Tuesday': 'Back+triceps',
-                    'Wednesday': 'Core'}
-REST, CHILL_OUT, TRAIN = 'Rest', 'Chill out!', 'Go train {}'
-INVALID_DAY = 'Not a valid day'
+WORKOUT_SCHEDULE = {
+    "Friday": "Shoulders",
+    "Monday": "Chest+biceps",
+    "Saturday": "Rest",
+    "Sunday": "Rest",
+    "Thursday": "Legs",
+    "Tuesday": "Back+triceps",
+    "Wednesday": "Core",
+}
+REST, CHILL_OUT, TRAIN = "Rest", "Chill out!", "Go train {}"
+INVALID_DAY = "Not a valid day"
 
 
 def get_workout_motd(day):
@@ -29,4 +31,11 @@ def get_workout_motd(day):
        Trivia: /etc/motd is a file on Unix-like systems that contains
        a 'message of the day'
     """
-    pass
+    if day in WORKOUT_SCHEDULE.keys():
+        if WORKOUT_SCHEDULE[day] == "Rest":
+            return CHILL_OUT
+        else:
+            return TRAIN.format(WORKOUT_SCHEDULE[day])
+    else:
+        return INVALID_DAY
+
