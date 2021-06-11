@@ -16,4 +16,4 @@ def divide_numbers(numerator, denominator):
         quot = int_num / int_den
     except ZeroDivisionError:
         quot = 0
-    return 0
+    return quot
