@@ -27,7 +27,7 @@ def sort_by_surname_desc(names):
     """Returns names list sorted desc by surname"""
     names = dedup_and_title_case_names(names)
     # ...
-    names.sort(key=lambda name: name.split()[-1])
+    names.sort(key=lambda name: name.split()[-1], reverse=True)
     return names
 
 
