@@ -38,7 +38,6 @@ def get_all_matching_models(cars=cars, grep="trail"):
 def sort_car_models(cars=cars):
     """return a copy of the cars dict with the car models (values)
        sorted alphabetically"""
-    pass
-
-
-print(get_all_matching_models())
+    car_list = [model for model_set in cars.values() for model in model_set]
+    car_list.sort()
+    return car_list
