@@ -4,4 +4,7 @@ PYBITES_BORN = datetime(year=2016, month=12, day=19)
 
 
 def gen_special_pybites_dates():
-    pass
+    time = PYBITES_BORN
+    while True:
+        time = time + timedelta(days=100)
+        yield time
