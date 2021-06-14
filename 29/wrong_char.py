@@ -11,5 +11,7 @@ def get_index_different_char(chars):
         alnumerical = (str(chars[0]) in ALPHANUM) and (str(chars[2]) in ALPHANUM)
 
     for character in chars:
+        if character == "":
+            character = "#"
         if (str(character) not in ALPHANUM) == alnumerical:
             return chars.index(character)
