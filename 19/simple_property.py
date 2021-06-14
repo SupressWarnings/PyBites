@@ -4,4 +4,5 @@ NOW = datetime.now()
 
 
 class Promo:
-    pass
+    def __init__(self, name, expires):
+        self.expired = expires < NOW
