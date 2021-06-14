@@ -2,7 +2,7 @@ from collections import deque
 
 
 def my_queue(n=5):
-    return deque(maxlen=5)
+    return deque(maxlen=n)
 
 
 if __name__ == "__main__":
