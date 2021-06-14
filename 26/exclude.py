@@ -23,6 +23,3 @@ def filter_bites(bites=bites, bites_done=exclude_bites):
     return {
         number: task for (number, task) in bites.items() if number not in bites_done
     }
-
-
-print(filter_bites())
