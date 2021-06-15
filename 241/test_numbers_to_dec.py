@@ -13,6 +13,11 @@ def test_multiple():
     assert list_to_decimal([0, 1, 1]) == 11
 
 
+def test_high():
+    with pytest.raises(ValueError):
+        list_to_decimal([11])
+
+
 def test_float():
     with pytest.raises(TypeError):
         list_to_decimal([0.5])
@@ -26,6 +31,11 @@ def test_string():
 def test_bool():
     with pytest.raises(TypeError):
         list_to_decimal([True])
+
+
+def test_empty():
+    with pytest.raises(ValueError):
+        list_to_decimal([])
 
 
 def test_negative():
