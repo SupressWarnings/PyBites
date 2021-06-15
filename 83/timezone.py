@@ -8,5 +8,4 @@ def what_time_lives_pybites(naive_utc_dt):
     """Receives a naive UTC datetime object and returns a two element
        tuple of Australian and Spanish (timezone aware) datetimes"""
     aware = utc.localize(naive_utc_dt)
-    print(aware)
     return (aware.astimezone(AUSTRALIA), aware.astimezone(SPAIN))
