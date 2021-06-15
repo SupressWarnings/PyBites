@@ -14,7 +14,7 @@ class User:
            and using title case for both.
         """
         # TODO 1: you code
-        pass
+        return f"{self.first_name.title()} {self.last_name.title()}"
 
     @property
     def username(self):
@@ -26,7 +26,8 @@ class User:
            https://pybit.es/property-decorator.html
         """
         # TODO 2: you code
-        pass
+        _username = f"{self.first_name[0].lower()}{self.last_name[:min(7, len(self.last_name))].lower()}"
+        return _username
 
     # TODO 3: you code
     #
@@ -37,10 +38,10 @@ class User:
     # see also TESTS for required output
 
     def __str__(self):
-        pass
+        return f"{self.get_full_name} ({self.username})"
 
     def __repr__(self):
         """Don't hardcode the class name, hint: use a
            special attribute of self.__class__ ...
         """
-        pass
+        return f'{self.__class__.__name__}("{self.first_name}", "{self.last_name}")'
