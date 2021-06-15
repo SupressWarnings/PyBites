@@ -15,7 +15,7 @@ def test_multiple():
 
 def test_high():
     with pytest.raises(ValueError):
-        list_to_decimal([11])
+        list_to_decimal([10])
 
 
 def test_float():
