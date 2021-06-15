@@ -17,3 +17,11 @@ Halbard,Davie,CN"""
 def group_names_by_country(data: str = data) -> defaultdict:
     countries = defaultdict(list)
     # your code
+    entries = data.split("\n")
+    country_names = [string.split(",")[-1] for string in entries]
+    country_names.remove("country_code")
+    country_set = set(country_names)
+    for entry in entries[1:]:
+        words = entry.split(",")
+        countries[words[-1]].append(f"{words[1]} {words[0]}")
+    return countries
