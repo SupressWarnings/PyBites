@@ -1,4 +1,5 @@
 import string
+from numpy import float64, int64
 
 import pandas as pd
 
@@ -8,7 +9,7 @@ def basic_series() -> pd.Series:
     Don't worry about the indexes for now.
     The name of the series should be 'Fred'
     """
-    pass
+    return pd.Series(range(1, 6), name="Fred", dtype=int64)
 
 
 def float_series() -> pd.Series:
@@ -16,7 +17,7 @@ def float_series() -> pd.Series:
     from 0.000 -> 1.000 e.g. 0.000, 0.001, 0.002... 0.999, 1.000
     Don't worry about the indexes or the series name.
     """
-    pass
+    return pd.Series([i / 1000 for i in range(1001)], dtype=float64)
 
 
 def alpha_index_series() -> pd.Series:
@@ -25,7 +26,7 @@ def alpha_index_series() -> pd.Series:
     so index 'a'=1, 'b'=2 ... 'y'=25, 'z'=26
     Don't worry about the series name.
     """
-    pass
+    return pd.Series(range(1, 27), dtype=int64, index=list(string.ascii_lowercase))
 
 
 def object_values_series() -> pd.Series:
@@ -34,4 +35,4 @@ def object_values_series() -> pd.Series:
     so index 101='A', 102='B' ... 125='Y', 126='Z'
     Don't worry about the series name.
     """
-    pass
+    return pd.Series(list(string.ascii_uppercase), dtype=object, index=range(101, 127))
