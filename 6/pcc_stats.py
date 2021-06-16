@@ -4,18 +4,18 @@ import urllib.request
 
 # prep
 tmp = os.getenv("TMP", "/tmp")
-tempfile = os.path.join(tmp, 'dirnames')
+tempfile = os.path.join(tmp, "dirnames")
 urllib.request.urlretrieve(
-    'https://bites-data.s3.us-east-2.amazonaws.com/dirnames.txt',
-    tempfile
+    "https://bites-data.s3.us-east-2.amazonaws.com/dirnames.txt", tempfile
 )
 
-IGNORE = 'static templates data pybites bbelderbos hobojoe1848'.split()
+IGNORE = "static templates data pybites bbelderbos hobojoe1848".split()
 
-Stats = namedtuple('Stats', 'user challenge')
+Stats = namedtuple("Stats", "user challenge")
 
 
 # code
+
 
 def gen_files(tempfile=tempfile):
     """
@@ -36,7 +36,10 @@ def gen_files(tempfile=tempfile):
     => Here you would return 03/mridubhatnagar (lowercased!)
        followed by 03/aleksandarknezevic
     """
-    pass
+    files = open(tempfile).read().splitlines()
+    for file in files:
+        if file.split(",")[1] == "True":
+            yield file.split(",")[0].lower()
 
 
 def diehard_pybites(files=None):
@@ -57,3 +60,11 @@ def diehard_pybites(files=None):
     popular_challenges = Counter()
 
     # your code
+    data = [file.split("/") for file in files if file.split("/")[1] not in IGNORE]
+    challenges = [entry[0] for entry in data]
+    usernames = [entry[1] for entry in data]
+    users = Counter(usernames)
+    popular_challenges = Counter(challenges)
+    return Stats(
+        user=users.most_common()[0][0], challenge=popular_challenges.most_common()[0]
+    )
