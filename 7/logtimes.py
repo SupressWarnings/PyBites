@@ -2,14 +2,13 @@ from datetime import datetime
 import os
 import urllib.request
 
-SHUTDOWN_EVENT = 'Shutdown initiated'
+SHUTDOWN_EVENT = "Shutdown initiated"
 
 # prep: read in the logfile
 tmp = os.getenv("TMP", "/tmp")
-logfile = os.path.join(tmp, 'log')
+logfile = os.path.join(tmp, "log")
 urllib.request.urlretrieve(
-    'https://bites-data.s3.us-east-2.amazonaws.com/messages.log',
-    logfile
+    "https://bites-data.s3.us-east-2.amazonaws.com/messages.log", logfile
 )
 
 with open(logfile) as f:
@@ -17,6 +16,7 @@ with open(logfile) as f:
 
 
 # for you to code:
+
 
 def convert_to_datetime(line):
     """TODO 1:
@@ -26,7 +26,7 @@ def convert_to_datetime(line):
        returns:
        datetime(2014, 7, 3, 23, 27, 51)
     """
-    pass
+    return datetime.strptime(line.split()[1], "%Y-%m-%dT%H:%M:%S")
 
 
 def time_between_shutdowns(loglines):
@@ -35,4 +35,7 @@ def time_between_shutdowns(loglines):
        calculate the timedelta between the first and last one.
        Return this datetime.timedelta object.
     """
-    pass
+    shutdowns = [
+        convert_to_datetime(line) for line in loglines if "Shutdown initiated" in line
+    ]
+    return shutdowns[1] - shutdowns[0]
