@@ -29,12 +29,7 @@ def get_movies_by_director():
         title = row.pop("movie_title")
         year = row.pop("title_year")
         score = row.pop("imdb_score")
-        if (
-            director is not None
-            and title is not None
-            and year is not None
-            and score is not None
-        ):
+        if director != "" and title != "" and year != "" and score != "":
             int_year = int(year)
             float_score = float(score)
             movie = Movie(title, int_year, float_score)
