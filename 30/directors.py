@@ -3,10 +3,10 @@ from collections import defaultdict, namedtuple
 import os
 from urllib.request import urlretrieve
 
-BASE_URL = 'https://bites-data.s3.us-east-2.amazonaws.com/'
-TMP = '/tmp'
+BASE_URL = "https://bites-data.s3.us-east-2.amazonaws.com/"
+TMP = "/tmp"
 
-fname = 'movie_metadata.csv'
+fname = "movie_metadata.csv"
 remote = os.path.join(BASE_URL, fname)
 local = os.path.join(TMP, fname)
 urlretrieve(remote, local)
@@ -15,20 +15,41 @@ MOVIE_DATA = local
 MIN_MOVIES = 4
 MIN_YEAR = 1960
 
-Movie = namedtuple('Movie', 'title year score')
+Movie = namedtuple("Movie", "title year score")
 
 
 def get_movies_by_director():
     """Extracts all movies from csv and stores them in a dict,
     where keys are directors, and values are a list of movies,
     use the defined Movie namedtuple"""
-    pass
+    movie_dict = csv.DictReader(open(local))
+    movies = {}
+    for row in movie_dict:
+        director = row.pop("director_name")
+        title = row.pop("movie_title")
+        year = row.pop("title_year")
+        score = row.pop("imdb_score")
+        if (
+            director is not None
+            and title is not None
+            and year is not None
+            and score is not None
+        ):
+            int_year = int(year)
+            float_score = float(score)
+            movie = Movie(title, int_year, float_score)
+            if int_year > 1960:
+                if movies[director] is not None:
+                    movies[director].append(movie)
+                else:
+                    movies[director] = movie
+    return movies
 
 
 def calc_mean_score(movies):
     """Helper method to calculate mean of list of Movie namedtuples,
        round the mean to 1 decimal place"""
-    pass
+    return round(sum([movie.score for movie in movies]) / len(movies), 1)
 
 
 def get_average_scores(directors):
@@ -36,4 +57,7 @@ def get_average_scores(directors):
        return a list of tuples (director, average_score) ordered by highest
        score in descending order. Only take directors into account
        with >= MIN_MOVIES"""
-    pass
+    list = [
+        (director, calc_mean_score(directors[director]))
+        for director in directors.keys()
+    ]
