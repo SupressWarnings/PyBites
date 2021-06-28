@@ -32,4 +32,6 @@ def get_month_most_posts(dates):
        that occurs most"""
     stripped = [datetime(date.year, date.month, 1) for date in dates]
     months = set(stripped)
-    return (max(months, key=lambda month: stripped.count(month))).strptime("%Y-%m")
+    return datetime.strptime(
+        max(months, key=lambda month: stripped.count(month)), "%Y-%m"
+    )
