@@ -30,6 +30,6 @@ def convert_to_datetime(date_str):
 def get_month_most_posts(dates):
     """Receives a list of datetimes and returns the month (format YYYY-MM)
        that occurs most"""
-    stripped = [datetime(date.year, date.month) for date in dates]
+    stripped = [datetime(date.year, date.month, 1) for date in dates]
     months = set(stripped)
     return (max(months, key=lambda month: stripped.count(month))).strptime("%Y-%m")
