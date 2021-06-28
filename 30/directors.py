@@ -33,11 +33,11 @@ def get_movies_by_director():
             int_year = int(year)
             float_score = float(score)
             movie = Movie(title, int_year, float_score)
-            if int_year > 1960:
+            if int_year >= 1960:
                 if director in movies.keys():
                     movies[director].append(movie)
                 else:
-                    movies[director] = movie
+                    movies[director] = [movie]
     return movies
 
 
